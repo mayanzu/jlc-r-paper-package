@@ -1,0 +1,15 @@
+{
+  "status": "completed_with_scope_limit",
+  "detailed_candidates": 2,
+  "external_comparison_gate": {
+    "HENO-MAC": "FAIL full / CONDITIONAL duty-only adapter",
+    "MAoIG": "FAIL same-executor faithful transfer"
+  },
+  "new_external_executions": 0,
+  "stop_rule_applied": true,
+  "primary_sources_sha256": {
+    "heno": "1af10e372bb1ad7f575121b446d0e6009c893edead04bbc1df61427cacbca4bb",
+    "maoig": "fb8be854b36e76adb48f6860caf7f6dfd075358e3dfafc9ab4ff4f71e0ab41da"
+  },
+  "independent_SOTA_comparison_established": false
+}

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "planned": 864,
+  "completed": 864,
+  "main_executions": 768,
+  "canopy_executions": 96,
+  "formal_seeds": 12,
+  "raw_files": 864,
+  "old_assets_unchanged": 89,
+  "execution_snapshot_commit": "d78291cd421638ccf8db9a7cdb79d493c3d4c0f9",
+  "max_physical_energy_balance_error_j": 4.538333087111823e-08,
+  "guard_violations": 0,
+  "resource_hold_violations": 0,
+  "errors_retained": 0,
+  "failure_state_traces_retained": 0,
+  "primary_test_family": 4,
+  "primary_independent_unit": "network seed",
+  "all_factorial_interactions": true,
+  "original_confirmation_inference_unchanged": true
+}

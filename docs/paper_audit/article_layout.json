@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "submission": "Single main article including Appendix A; no separate journal supplement",
+  "main_tables": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "proof_source": "docs/analytical_proofs.md",
+  "primary_results_source": "code/experiments/v6_3_relay_repair/D_confirmation_metrics_seeds16.csv",
+  "note": "Main statements retain the submitted wording; the Proposition 2 planner-variant phrase is shared by the manuscript and complete proof. Theorem 1 section reference normalized from 4.3 to 3.3 for comparison. Full tables E1-E8 remain independently checked.",
+  "main_statement_sha256": {
+    "Lemma 1": "20c5e5bd76609131a9aa10f0e757f6846f70111b33b9cb84da5d154e6e501895",
+    "Proposition 1": "746dfd17eb1a2b3c38d481076f9ada2b248240b3b155eb2d86adcda20ec31208",
+    "Proposition 2": "a8b0b18a9f35169178de2d5149da630120913ef6ddb57af6e2be9e99e248e7d8",
+    "Proposition 3": "793abf50f357eef7ec377bf7a3bbdb36e563df66f2de330ffac54f36ca48d4a7",
+    "Theorem 1": "6b1d382cc21ac464baec88cc5d38a8e88f662090b4cb8652628659043a00da84",
+    "Corollary 1": "647ee0972cda040ebb8cad774e82295976300bea637637d4c41bfb89e3e2f510"
+  },
+  "repository_proofs_sha256": "36631358df5786825aae6839256da58cc4c10446c4d5e5f4dc0b2d370fdcc3c4",
+  "extended_tables": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8"
+  ],
+  "new_reliability_evidence": "code/experiments/v6_4_agricultural_extension/results/reliability_20261025_raw"
+}

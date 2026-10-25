@@ -1,0 +1,34 @@
+{
+  "runs": 240,
+  "independent_seeds_per_cell": 12,
+  "primary_family_size": 16,
+  "exclusions": 0,
+  "paired_input_groups": 48,
+  "blocks": {
+    "heno": {
+      "runs": 192,
+      "metric_sha256": "3a38f5c9da9d8755567d940f0091152d0aad17407e79738e335d3414b3564fc7",
+      "inputs_verified": 48,
+      "execution_sources_verified": 55
+    },
+    "padc": {
+      "runs": 48,
+      "metric_sha256": "8899010f2ce179413f1efc970939c7c3fed16a5ed796de900a87a444966091c0",
+      "inputs_verified": 48,
+      "execution_sources_verified": 55
+    }
+  },
+  "interpretation": "Recent source-rule adapters in a common executor; not complete published MAC reproductions",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "source_sha256": {
+    "analyze_recent.py": "4706dbb4d4022b0b17126081b994fc3b4b1dca6bda090913a677538fc4cbddd5",
+    "validation_stats.py": "aac484efc0a062104cf6193e52b4ddafd13624e3af6dea54472b77999d9cfe8e"
+  },
+  "output_sha256": {
+    "metrics.csv": "fe846bccb5d09b17c4e9cec0b2b78c0b58db3966703342b3d7d3b0d4b1461f67",
+    "summary.csv": "50d9d10c558d4907da9cf39562425476b7c568886098876fbb3813711de41f29",
+    "paired.csv": "0842a469442ea98f4d87849afcf85d794de9ccb2f42e4cd578253f5b4befb792",
+    "paired_source.csv": "908b22d86086951239550a8e8a7bd21d5b98fcc10a9a2942f0fbf0335efc1cf9"
+  }
+}

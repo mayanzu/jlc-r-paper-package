@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite the associated manuscript and this versioned minimal reproducibility package."
+type: software
+title: "JLC-R: Joint Listening-Credit Planning and Relay Protection for Fresh Data Collection in Solar-Powered Agricultural Sensor Networks"
+version: 1.0.0
+authors:
+  - family-names: Ma
+    given-names: Zhongjun
+  - family-names: Jin
+    given-names: Huiqing
+license: MIT
+keywords:
+  - agricultural wireless sensor networks
+  - solar energy harvesting
+  - information freshness
+  - joint resource scheduling
+  - multihop relay protection
+abstract: "Frozen JLC-R simulation, per-seed confirmation and agricultural-extension evidence, relay-factorial results, analysis scripts and complete analytical derivations. The MIT license applies to project software; third-party SURFRAD input retains upstream terms."
+
+repository-code: "https://github.com/mayanzu/jlc-r-paper-package"
+url: "https://github.com/mayanzu/jlc-r-paper-package/releases/tag/v1.0.0"
+date-released: "2026-10-25"

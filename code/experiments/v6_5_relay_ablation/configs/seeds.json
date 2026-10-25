@@ -1,0 +1,23 @@
+{
+  "development": [
+    200101,
+    200202,
+    200303,
+    200404
+  ],
+  "formal": [
+    210101,
+    210202,
+    210303,
+    210404,
+    210505,
+    210606,
+    210707,
+    210808,
+    210909,
+    211010,
+    211111,
+    211212
+  ],
+  "registration": "Fixed before any new simulation; no outcome-based seed selection."
+}

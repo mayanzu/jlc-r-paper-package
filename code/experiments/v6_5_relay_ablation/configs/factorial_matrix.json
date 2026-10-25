@@ -1,0 +1,42 @@
+{
+  "A000": {
+    "transit_margin_on": false,
+    "two_slot_gate_on": false,
+    "staleness_tie_on": false
+  },
+  "A001": {
+    "transit_margin_on": false,
+    "two_slot_gate_on": false,
+    "staleness_tie_on": true
+  },
+  "A010": {
+    "transit_margin_on": false,
+    "two_slot_gate_on": true,
+    "staleness_tie_on": false
+  },
+  "A011": {
+    "transit_margin_on": false,
+    "two_slot_gate_on": true,
+    "staleness_tie_on": true
+  },
+  "A100": {
+    "transit_margin_on": true,
+    "two_slot_gate_on": false,
+    "staleness_tie_on": false
+  },
+  "A101": {
+    "transit_margin_on": true,
+    "two_slot_gate_on": false,
+    "staleness_tie_on": true
+  },
+  "A110": {
+    "transit_margin_on": true,
+    "two_slot_gate_on": true,
+    "staleness_tie_on": false
+  },
+  "A111": {
+    "transit_margin_on": true,
+    "two_slot_gate_on": true,
+    "staleness_tie_on": true
+  }
+}

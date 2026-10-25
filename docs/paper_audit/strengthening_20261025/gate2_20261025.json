@@ -1,0 +1,14 @@
+{
+  "status": "PASS simulation monitoring proxies",
+  "cases": 144,
+  "failed": 0,
+  "new_seeds": 12,
+  "original_families_unchanged": true,
+  "field_agronomic_endpoint_validated": false,
+  "source_matrices": 144,
+  "important_adverse_results": [
+    "all winter sources have observed gaps >4 h",
+    "48.25% spring sources and 75.48% far spring sources have observed gaps >4 h",
+    "P95 gap differences vs JLC-Core remain unresolved"
+  ]
+}

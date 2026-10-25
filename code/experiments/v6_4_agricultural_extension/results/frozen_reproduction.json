@@ -1,0 +1,16 @@
+{
+  "executions": 480,
+  "max_abs_deviation_by_metric": {
+    "coverage_pct": 0.0,
+    "aoi_mean_minutes": 0.0,
+    "source_coverage_p5_pct": 0.0,
+    "night_off_pct": 0.0,
+    "consumed_j": 0.0
+  },
+  "max_D4_coverage_deviation": 1.4210854715202004e-14,
+  "max_D4_source_p5_deviation": 0.0,
+  "delivered_count_mismatches": 0,
+  "published_sha256": "385f7725b9d9fffa5d935b41d85e63158f8be42250b6d6880da7ef2e00b87ec2",
+  "reexecution_sha256": "1622130d741505420fdf6da0550cf0a192f8574737ec33b57fc82efc51ec3a18",
+  "conclusion": "All 480 re-executions reproduce the frozen published metrics to 1e-9."
+}

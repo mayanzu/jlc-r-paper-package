@@ -1,0 +1,13 @@
+{
+  "status": "PASS model audit; FAIL real-MAC experimental gate",
+  "ledger_bug_found": false,
+  "control_narrative_corrected_bits": 64,
+  "payload_ms": 16,
+  "uncertainty_ms": 17,
+  "Guard_ms": 20,
+  "recorded_envelope_s": 21.83575090245332,
+  "limit_s": 99.98,
+  "timing_misses": 0,
+  "ACK_fragmentation_contention_implemented": false,
+  "CPU_energy_measured": false
+}

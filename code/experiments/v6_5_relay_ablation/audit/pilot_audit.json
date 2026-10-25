@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "expected": 32,
+  "completed": 32,
+  "failures": 0,
+  "runtime_seconds": 360.731708299998,
+  "activation": {
+    "t_checks_executed": 316442,
+    "reject_transit_protect": 28112,
+    "ch_low_guard_only_demand": 30362,
+    "r_only_reactive_periods": 15189,
+    "staleness_comparison_opportunities": 419581,
+    "staleness_changed_selection": 49184
+  },
+  "observer_followup": "After this pilot, T rejection logging was split into positive versus zero margin only. All decision nodes are unchanged. Seven unit/analysis tests and the full six endpoint regressions were repeated before formal freeze; no pilot service outcomes were used for design or seed selection."
+}

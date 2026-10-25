@@ -1,0 +1,92 @@
+[
+  {
+    "requirement": "H1 / paths and unique manuscript",
+    "status": "PASS",
+    "evidence": "COMPAG/manuscript.md, main_cas.tex and build_manifest.json; one main PDF; all new experiment files remain in existing v6_4 directory."
+  },
+  {
+    "requirement": "H2 / frozen science",
+    "status": "PASS",
+    "evidence": "frozen_preservation_20261025.json: 1,096 baseline code/data files inspected, no deletion; only seven existing workflow/README/map/inventory files changed. All 176 public immutable files and 864 original raw factorial hashes verified."
+  },
+  {
+    "requirement": "H3 / negative results",
+    "status": "PASS",
+    "evidence": "Main 5.5 / Table 5 / Discussion: all winter sources >4 h unavailable; 48.25% spring sources; unresolved JLC-Core P95 differences; conditional recovery and censoring disclosed."
+  },
+  {
+    "requirement": "H4 / 22-page cap",
+    "status": "PASS",
+    "evidence": "Actual CAS PDF: 19 pages including title, abstract, figures, tables, Appendix A, declarations and 41 references. Template fonts/margins unchanged; no overfull or undefined reference warnings."
+  },
+  {
+    "requirement": "Gate 0 / existing state",
+    "status": "PASS",
+    "evidence": "gate0_20261025.json and before snapshot; initial and final branch/commit unchanged; no checkout, reset, commit or push."
+  },
+  {
+    "requirement": "Gate 1 / external controls",
+    "status": "PASS audited-stop route",
+    "evidence": "Exactly two primary full texts: HENO-MAC and MAoIG. Full transfers fail the fixed-executor gate, duty-only adapter is conditional. No new independent SOTA comparison claimed and no further candidate search."
+  },
+  {
+    "requirement": "Gate 2 / task evidence",
+    "status": "PASS simulation proxy",
+    "evidence": "144 independently seeded recordings, 144 raw 1344x100 delivered-birth matrices, protocol/source freeze, zero failures, source/event outputs and nominal paired intervals; no crop-event accuracy claim."
+  },
+  {
+    "requirement": "Gate 2 / parameter evidence",
+    "status": "PASS",
+    "evidence": "Nine evidence categories in parameter_evidence_20261025.csv and technical E9. 0.12 J/round, 4 J, 56 mW, Guards, 250 kbps, 4000 bits, 15-min workload and 60-min criterion are classified."
+  },
+  {
+    "requirement": "Gate 3 / physical accounting",
+    "status": "PASS model audit; real-MAC experiment FAIL",
+    "evidence": "16-ms payload / 20-ms Guard / 17-ms uncertainty / 99.98-s envelope distinguished. Recorded maximum 21.83575090245332 s, zero timing misses. 64-bit narrative corrected. ACK, fragmentation, contention and planner CPU energy remain unvalidated."
+  },
+  {
+    "requirement": "Gate 3 / daylight",
+    "status": "PASS support audit",
+    "evidence": "Independent weather-input hash and support recomputation from all 3 scored 1344-round records; support mismatch is not labeled full forecast error."
+  },
+  {
+    "requirement": "Gate 4 / scientific manuscript",
+    "status": "PASS",
+    "evidence": "Introduction strengthened with two recent original COMPAG field papers; one reference application; no crop-stage mapping. Original six analytical statements and all full E1-E8 numeric checks retained. Five figures and five main tables."
+  },
+  {
+    "requirement": "Gate 5 / old statistics",
+    "status": "PASS",
+    "evidence": "Independent 32 NI decisions, original Holm-36 maximum 0.037107085836714966 and unchanged independent Holm-4; no new outcomes pooled into those families."
+  },
+  {
+    "requirement": "Gate 5 / new statistics",
+    "status": "PASS",
+    "evidence": "3,312 trace numbers and 96 summary rows independently rescored; all 60 Table 5 values and new text reductions/rates checked, minute/hour conversion and nominal interval labels checked."
+  },
+  {
+    "requirement": "Gate 5 / reproduction",
+    "status": "PASS",
+    "evidence": "Current workspace and package reproduce passed; independent portable copy reproduce passed with runtime simulation-entry guard reporting zero entries."
+  },
+  {
+    "requirement": "Gate 5 / safety and dispatch",
+    "status": "PASS",
+    "evidence": "5 current safety/information/observer tests passed in 51.036 s; 7 packaging tests passed; recording boundary selftests and frozen-case regression passed; reliability rerun dry-run has 144 cases and starts no simulation."
+  },
+  {
+    "requirement": "Gate 5 / PDF and references",
+    "status": "PASS",
+    "evidence": "Desktop compiler success for final saved TeX; terminal build success; all 19 pages rendered and inspected, no missing figure/overflow. Figure 1 equations 9-15/17/18, sections 3.3/3.4 and Algorithms 1/2 matched."
+  },
+  {
+    "requirement": "Gate 5 / availability and AI",
+    "status": "PASS statement consistency",
+    "evidence": "Data statement says archive available from corresponding author on reasonable request and GitHub planned upon publication. No public URL, DOI, journal upload or completed human review is invented. AI use includes manuscript, analysis/recording code and checks."
+  },
+  {
+    "requirement": "Reviewer handoff / external submission action",
+    "status": "READY FOR AUTHOR ATTACHMENT",
+    "evidence": "Final complete archive is delivered locally with a checksum; actual journal attachment/public release is not performed or represented as verified online reviewer access. This is the author submission step, not an executed experiment."
+  }
+]

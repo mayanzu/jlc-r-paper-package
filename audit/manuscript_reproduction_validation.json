@@ -1,0 +1,76 @@
+{
+  "scope": "Local manuscript-finalization candidate; GitHub upload deferred by the user.",
+  "main_source_sha256": "247621495a77d9a02d6fe8ddd3f2d4d4f4efe00be019596ea2ba4bd995cf6792",
+  "main_tex_sha256": "c8d2eb30f50b042da86a13d9a63a336dac2873a023104320cd80c7448a15cda4",
+  "numerical_main_tables_verified": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "main_statistical_figures": [
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "repository_figures": [
+    "R1",
+    "R2"
+  ],
+  "confirmation": {
+    "confirmation_rows": 480,
+    "methods": 5,
+    "seeds": 12,
+    "primary_NI_tests": 32,
+    "NI_pass": 32,
+    "relative_sensitivity_pass": 32,
+    "benchmark_rows": 96,
+    "seed_search_rows": 12,
+    "numerical_reference_match": true
+  },
+  "relay_primary_tests": {
+    "H1": {
+      "mean_difference": 0.19197825641096553,
+      "sd_difference": 0.10150747913756586,
+      "ci95_low": 0.1274834811296089,
+      "ci95_high": 0.25647303169232216,
+      "p_two_sided": 4.126717135313608e-05,
+      "p_holm4": 0.0001650686854125443
+    },
+    "H2": {
+      "mean_difference": -0.002777499970308022,
+      "sd_difference": 0.015523992962807421,
+      "ci95_low": -0.012640974525210024,
+      "ci95_high": 0.007085974584593979,
+      "p_two_sided": 0.5480226001512866,
+      "p_holm4": 0.5480226001512866
+    },
+    "H3": {
+      "mean_difference": 0.05160280257936516,
+      "sd_difference": 0.08807482742026804,
+      "ci95_low": -0.004357272980350588,
+      "ci95_high": 0.10756287813908091,
+      "p_two_sided": 0.0672962128236049,
+      "p_holm4": 0.1345924256472098
+    },
+    "H4": {
+      "mean_difference": 0.20674448164682538,
+      "sd_difference": 0.12917961249380994,
+      "ci95_low": 0.12466767164714017,
+      "ci95_high": 0.2888212916465106,
+      "p_two_sided": 0.000174295052043825,
+      "p_holm4": 0.000522885156131475
+    }
+  },
+  "exact_original_main_statements": 6,
+  "complete_repository_proofs_sha256": "3337d566717725cb530890844add0b431a88464501515272719c13593ecd519a",
+  "saved_result_reproduction": "passed",
+  "new_formal_simulations": 0,
+  "published_repository_url": null,
+  "published_revision": null
+}

@@ -1,0 +1,22 @@
+{
+  "source": "code/experiments/v6_4_agricultural_extension/results/freshness_contrasts.csv",
+  "source_sha256": "0806fa46bc630e7a58a00bf9a3be8c64b7ff44da42eeaf18e760a58729979877",
+  "thresholds_minutes": [
+    30,
+    60,
+    120,
+    240
+  ],
+  "cells": [
+    "Synthetic 1.0",
+    "Synthetic 0.7",
+    "T1 winter 1.0",
+    "T1 winter 0.7",
+    "T2 spring 1.0",
+    "T2 spring 0.7",
+    "T3 winter 1.0",
+    "T3 winter 0.7"
+  ],
+  "comparators": "Prefix-only for Synthetic/T2; PADC-AGE for T1/T3",
+  "note": "Descriptive paired differences; packet generation, routing, energy and expiry are unchanged."
+}

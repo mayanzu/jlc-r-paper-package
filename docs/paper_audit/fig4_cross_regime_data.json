@@ -1,0 +1,80 @@
+{
+  "source": "code/experiments/v6_4_agricultural_extension/results/cross_regime_absolute.csv",
+  "paired": "code/experiments/v6_4_agricultural_extension/results/cross_regime_comparison.csv",
+  "absolute_sha256": "7ba1e2db5753dd2b95bb4fc79366edec762fe879964a8245cca6449a2c1e071b",
+  "paired_sha256": "5b7d00e338a4a7dc28a968093a485fcf86a1082c6ea50617dbd58221f2848524",
+  "cells": [
+    "Synthetic 1.0",
+    "Synthetic 0.7",
+    "T1 winter 1.0",
+    "T1 winter 0.7",
+    "T2 spring 1.0",
+    "T2 spring 0.7",
+    "T3 winter 1.0",
+    "T3 winter 0.7"
+  ],
+  "controllers": [
+    "JLC-R",
+    "Prefix-only",
+    "Hybrid control",
+    "PADC-AGE",
+    "PADC+relay"
+  ],
+  "comparators": [
+    "Prefix-only",
+    "Hybrid control",
+    "PADC-AGE",
+    "PADC+relay"
+  ],
+  "interpretation": "Panel b shows descriptive paired coverage differences; the formal decisions remain the Holm-36 noninferiority family.",
+  "coverage_matrix": [
+    [
+      0.40197172619047744,
+      0.3228546626984154,
+      3.783482142857146,
+      3.4097222222222245
+    ],
+    [
+      0.7433655753968242,
+      0.3937872023809487,
+      5.51047867063492,
+      5.0551835317460325
+    ],
+    [
+      4.608568948412699,
+      0.5308159722222218,
+      1.1336805555555547,
+      0.6998387896825388
+    ],
+    [
+      4.575148809523809,
+      0.21812996031746068,
+      0.3144841269841274,
+      0.23152281746031766
+    ],
+    [
+      0.14006696428571055,
+      0.22172619047618802,
+      2.293092757936504,
+      2.002728174603168
+    ],
+    [
+      -0.3066096230158711,
+      0.3821304563492068,
+      4.616691468253968,
+      4.171564980158729
+    ],
+    [
+      3.6364087301587307,
+      0.1868179563492071,
+      0.5006200396825403,
+      0.4278273809523809
+    ],
+    [
+      2.7298487103174605,
+      0.10385664682539682,
+      0.34443204365079416,
+      0.3063616071428572
+    ]
+  ]
+}

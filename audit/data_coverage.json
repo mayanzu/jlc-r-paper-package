@@ -1,0 +1,21 @@
+{
+  "cohorts": {
+    "independent_confirmation": "included",
+    "retained_repair": "included",
+    "retained_benchmark": "seed-use-only",
+    "relay_development": "seed-use-only",
+    "oc_development": "seed-use-only",
+    "recent_controls": "seed-use-only",
+    "optimized_development": "seed-use-only",
+    "optimized_confirmation": "seed-use-only",
+    "optimized_padc_age": "seed-use-only",
+    "reference_floor": "included",
+    "synchronization": "seed-use-only",
+    "climate": "seed-use-only",
+    "rescue": "seed-use-only",
+    "classic_rescue": "seed-use-only",
+    "extension_supply_scan": "included",
+    "extension_freshness": "included",
+    "extension_canopy": "included"
+  }
+}

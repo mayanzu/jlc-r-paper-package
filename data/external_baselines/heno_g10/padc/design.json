@@ -1,0 +1,9 @@
+{
+  "stage": "recent_duty_controls_padc_block",
+  "specification": "PADC_SOURCE_MAPPING.md",
+  "days": 14,
+  "seeds": [120101, 120202, 120303, 120404, 120505, 120606, 120707, 120808, 120909, 121010, 121111, 121212],
+  "supplies": [1.0, 0.7],
+  "policies": ["PADC-DC"],
+  "conditions": [{"name": "SYNTHETIC", "config": {}}, {"name": "MEASURED", "config": {}}]
+}

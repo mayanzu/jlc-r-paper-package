@@ -1,0 +1,7 @@
+{
+  "scope": "Current main article, numerical Tables 1-8 and statistical Figures 3-6 plus repository R1-R2.",
+  "unresolved_current_main_table_data_gaps": [],
+  "resource_verification": "Checks supplied seed-level maxima and demand ledgers; complete per-packet histories are not distributed.",
+  "simulation_validation": "Explicit rerun interfaces include the original G10 mechanism study. Packaging validation uses imports, recorded-case checks, dry-runs and dispatch tests; it does not claim a newly executed full matrix.",
+  "external_protocols": "HENO-DC is a retained G10 duty-rule adapter record; full HENO-MAC and MAoIG are not current S200/G20 comparator implementations."
+}

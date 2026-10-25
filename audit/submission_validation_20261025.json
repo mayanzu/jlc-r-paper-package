@@ -1,0 +1,103 @@
+{
+  "state": "passed_local_submission_preparation",
+  "original_frozen_files": 176,
+  "new_recording_executions": 144,
+  "failed_new_executions": 0,
+  "new_primary_test_family": null,
+  "original_holm_families": [
+    36,
+    4
+  ],
+  "new_source_scoring": "3,312 raw-trace metrics; 96 summary rows; 60 displayed Table 5 cells independently checked",
+  "local_saved_result_reproduction": "passed; current 5-figure map and raw-trace availability outputs verified",
+  "package_saved_result_reproduction": "passed; temp/minimal_reproduction/strengthening_20261025_saved_results",
+  "packaging_regression_tests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "reliability_rerun_dry_run": {
+    "cases": 144,
+    "simulations_started": 0
+  },
+  "main_pdf": {
+    "compiled_local": "2026-10-25T15:43:45.166067+08:00",
+    "timezone": "Asia/Shanghai",
+    "filename_timestamp": "20261025_154339",
+    "pdf_files": {
+      "main_cas": "main_cas_20261025_154339.pdf"
+    },
+    "pdf_sha256": {
+      "main_cas": "a4b1201035cce853919ca0876e8ba009f7b4ecbf7b77481c9f92a909a3bf2851"
+    },
+    "pages": {
+      "main_cas": 19
+    },
+    "input_sha256": {
+      "manuscript.md": "2d9c22d847295ed17016dd15d7cca804468995ad425976727aee71251df98a85",
+      "references.bib": "983d99f70f393f64c858d740045c6015dcca0f76369e1f972656403dd3ba1f78",
+      "build.py": "d93048c67a39328f5a6b5365b1c361af34725bb2854ab851baf7a35354c4a51f",
+      "make_cas.py": "a6d4c78d787b01e12476b03ac5033ad7c1a4fd4dd16514589a3196040840169d",
+      "cas-sc.cls": "5030545ed09c770afa31004817bf8626ca7f311cf795e6c2825ecae113bb42e9",
+      "cas-common.sty": "cfdcbc7f48fec77d8460d6d2a6a60cc4a8c4442c6bf491aeb761a1ed6b1430ad",
+      "elsarticle-num.bst": "08d06d24a533fbe0c6e29d5bd5e7134781ab41a3c6640d73ad63112d4851b301",
+      "figures/fig1_jlcr_flow.pdf": "bfc3754fb7be527aac88db4fca4c6bc276fc27e997323bbf8419eff85dfca62c",
+      "figures/fig4_cross_regime.pdf": "31fa4b77f533979a025d50c9857c521dec62593cae73ea7c9fb56b431bc9c6b1",
+      "figures/fig5_relay_ablation.pdf": "9c3493eb2ff87533bb102e3f02812dd46d7cd04e9ccf695d5b925e8d196f4999",
+      "figures/fig5_supply_scan.pdf": "a24ee7d25836ee87e711babca5e1f914175bd34c167bcf6669a45c141eb5e3b3",
+      "figures/fig7_canopy.pdf": "61368479f4b3240d572aac5f7caaa475cc9c478124e60e0ea96e422d78e250bf"
+    },
+    "generated_tex_sha256": "c42145981c36d7e5d96d7b692a1458a3adbc00e741dd2ea620521b2505edbfdd",
+    "undefined_references": 0,
+    "duplicate_labels": 0,
+    "overfull_boxes": 0
+  },
+  "historical_environment_record": "audit/package_validation.json; no dependency changes in current revision",
+  "public_repository_uploaded": false,
+  "journal_uploaded": false,
+  "availability_statement": "author upon reasonable request; GitHub release planned upon publication",
+  "technical_pdf_compiled": false,
+  "scope": "Main Tables 1-5; E1-E8 preserved, parameter E9 and reliability E10 added; statistical Figures 2-5 and R1/R2.",
+  "portable_copy_reproduction": "passed; new independent copy using its own manuscript mirror and no project path override",
+  "simulation_execution_guard": {
+    "status": "PASS",
+    "simulation_entries_invoked": 0,
+    "root": "D:\\OneDrive\\07_\u8bba\u6587\\JLC-R\\temp\\minimal_reproduction\\strengthening_20261025_portable\\JLC-R",
+    "mode": "reproduce",
+    "including_verify": true
+  },
+  "independent_summary_comparison": {
+    "rows": 96,
+    "numeric_tolerance": 1e-08,
+    "status": "PASS"
+  },
+  "safety_tests": {
+    "passed": 5,
+    "failed": 0,
+    "elapsed_seconds": 51.036,
+    "command": "python -B -m unittest discover -s code/simulation -p test_v63.py -v",
+    "log_scope": "local final safety_tests_final.log"
+  },
+  "frozen_preservation": {
+    "status": "PASS",
+    "baseline_files": 1096,
+    "missing_files": [],
+    "changed_existing_workflow_only": [
+      "code/current_research_manifest.json",
+      "code/README.md",
+      "code/reproduce.py",
+      "code/configs/article_figure_map.json",
+      "code/tools/reproduce_figures.py",
+      "code/tools/rerun.py",
+      "code/tools/verify_current.py"
+    ],
+    "original_algorithm_and_results_changed": false,
+    "original_statistics_changed": false,
+    "original_public_frozen_files": 176
+  },
+  "reviewer_access": {
+    "archive": "prepared for attachment by author",
+    "public_upload_performed": false,
+    "journal_upload_performed": false,
+    "statement_matches": "available from corresponding author upon reasonable request"
+  }
+}

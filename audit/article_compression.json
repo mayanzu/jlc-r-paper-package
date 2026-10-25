@@ -1,0 +1,24 @@
+{
+  "before_pdf_pages": 31,
+  "after_pdf_pages": 17,
+  "source_english_word_items_before": 14318,
+  "source_english_word_items_after": 6215,
+  "frozen_source_data_changes": [],
+  "intentional_presentation_config_change": [
+    "configs/article_figure_map.json"
+  ],
+  "main_tables": 4,
+  "main_figures": 5,
+  "numbered_equations": 20,
+  "references": 38,
+  "new_formal_simulations": 0,
+  "figure1_fixes": {
+    "section_4.4": "3.4",
+    "section_4.3": "3.3",
+    "planning_equations": "11-15"
+  },
+  "main_pdf": "main_cas_20261025_120725.pdf",
+  "pdf_sha256": "7d5f68294b092bcc15d3477fae1670084caf534bc47bc03a51a5ad8d97cc61c5",
+  "verification": "verify_delivery --manifest passed; seven package regression tests passed; saved-result reproduce completed without simulation",
+  "figure1_source": "assets/paper_figures/fig1_jlcr_flow.svg"
+}

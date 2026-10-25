@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "baseline_files": 1096,
+  "missing_files": [],
+  "changed_existing_workflow_only": [
+    "code/current_research_manifest.json",
+    "code/README.md",
+    "code/reproduce.py",
+    "code/configs/article_figure_map.json",
+    "code/tools/reproduce_figures.py",
+    "code/tools/rerun.py",
+    "code/tools/verify_current.py"
+  ],
+  "original_algorithm_and_results_changed": false,
+  "original_statistics_changed": false,
+  "original_public_frozen_files": 176
+}

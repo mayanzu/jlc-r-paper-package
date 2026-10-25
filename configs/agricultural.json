@@ -1,0 +1,6 @@
+{
+  "frozen_design": "code/experiments/v6_4_agricultural_extension/extension_design.json",
+  "supply_runs": 576,
+  "freshness_runs": 480,
+  "canopy_runs": 384
+}

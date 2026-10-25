@@ -1,0 +1,138 @@
+{
+  "scope": "Retained G10 rule adapters; not current S200/G20 or full MAC replication",
+  "heno_block_rows": 192,
+  "heno_dc_rows": 48,
+  "combined_rows": 240,
+  "seeds": [
+    120101,
+    120202,
+    120303,
+    120404,
+    120505,
+    120606,
+    120707,
+    120808,
+    120909,
+    121010,
+    121111,
+    121212
+  ],
+  "guard_seconds": 0.01,
+  "new_simulations": 0,
+  "historical_adapter_source": {
+    "recorded_execution_sha256": "e67abf7adf36a78c7d313e1538b75714a2e8df0f97eb9fbad483b3135d8f78f5",
+    "retained_source_sha256": "479ea23bdd0f379440934a7e43c84e58a617a7f337629c3c776cb765b7f5c805",
+    "exact_execution_copy_present": false,
+    "limitation": "Retained source is supplied for rule inspection; it is not asserted to be the original HENO execution snapshot. Original provenance is preserved."
+  },
+  "files": [
+    {
+      "project_source": "code/results/recent_baselines/audit.json",
+      "package_path": "data/external_baselines/heno_g10/audit.json",
+      "bytes": 1326,
+      "sha256": "b1f9165cc5b8bdf50ab0554974763218bd0c559da34277725424f7bc7db53e1f"
+    },
+    {
+      "project_source": "code/results/recent_baselines/audit_sources/analyze_recent.py",
+      "package_path": "data/external_baselines/heno_g10/audit_sources/analyze_recent.py",
+      "bytes": 9687,
+      "sha256": "4706dbb4d4022b0b17126081b994fc3b4b1dca6bda090913a677538fc4cbddd5"
+    },
+    {
+      "project_source": "code/results/recent_baselines/audit_sources/validation_stats.py",
+      "package_path": "data/external_baselines/heno_g10/audit_sources/validation_stats.py",
+      "bytes": 1327,
+      "sha256": "aac484efc0a062104cf6193e52b4ddafd13624e3af6dea54472b77999d9cfe8e"
+    },
+    {
+      "project_source": "code/results/recent_baselines/figure_source.csv",
+      "package_path": "data/external_baselines/heno_g10/figure_source.csv",
+      "bytes": 12115,
+      "sha256": "501c4b4b4d135ba79f63a95bbbd15231f631484f92240f345a446bb2a8e207f7"
+    },
+    {
+      "project_source": "code/results/recent_baselines/heno/design.json",
+      "package_path": "data/external_baselines/heno_g10/heno/design.json",
+      "bytes": 399,
+      "sha256": "b0e735c94b4bf5e3d14354d92a05bd50fa56a04cdb72d0797709b5af4f569b82"
+    },
+    {
+      "project_source": "code/results/recent_baselines/heno/metrics.csv",
+      "package_path": "data/external_baselines/heno_g10/heno/metrics.csv",
+      "bytes": 256345,
+      "sha256": "3a38f5c9da9d8755567d940f0091152d0aad17407e79738e335d3414b3564fc7"
+    },
+    {
+      "project_source": "code/results/recent_baselines/heno/provenance.json",
+      "package_path": "data/external_baselines/heno_g10/heno/provenance.json",
+      "bytes": 9062,
+      "sha256": "d0d002807b77ad058257c9d7fe0c2ab0e46b0616840c0892da98294ea645c4fa"
+    },
+    {
+      "project_source": "code/results/recent_baselines/heno/RECENT_BASELINES_SPEC.md",
+      "package_path": "data/external_baselines/heno_g10/heno/RECENT_BASELINES_SPEC.md",
+      "bytes": 4469,
+      "sha256": "a44ff20b99a4e6510e0584ad8a30fac734d97c4921cb2720ba478120101ce024"
+    },
+    {
+      "project_source": "code/results/recent_baselines/metrics.csv",
+      "package_path": "data/external_baselines/heno_g10/metrics.csv",
+      "bytes": 320956,
+      "sha256": "fe846bccb5d09b17c4e9cec0b2b78c0b58db3966703342b3d7d3b0d4b1461f67"
+    },
+    {
+      "project_source": "code/results/recent_baselines/padc/design.json",
+      "package_path": "data/external_baselines/heno_g10/padc/design.json",
+      "bytes": 361,
+      "sha256": "defc54b2a1785d6f40cab24a0c2c2a60d8bc85185d908748a33e1666d05bc1de"
+    },
+    {
+      "project_source": "code/results/recent_baselines/padc/metrics.csv",
+      "package_path": "data/external_baselines/heno_g10/padc/metrics.csv",
+      "bytes": 65391,
+      "sha256": "8899010f2ce179413f1efc970939c7c3fed16a5ed796de900a87a444966091c0"
+    },
+    {
+      "project_source": "code/results/recent_baselines/padc/PADC_SOURCE_MAPPING.md",
+      "package_path": "data/external_baselines/heno_g10/padc/PADC_SOURCE_MAPPING.md",
+      "bytes": 1800,
+      "sha256": "d0f2b0d6ac1b8f0f228bed814af9ac6359d59a2ad7c213709c142d182bc3811d"
+    },
+    {
+      "project_source": "code/results/recent_baselines/padc/provenance.json",
+      "package_path": "data/external_baselines/heno_g10/padc/provenance.json",
+      "bytes": 9001,
+      "sha256": "6d4f738abf356f9ef9dc2ea24501f7b49d247bed8df762d0b2a261f1f3d399ac"
+    },
+    {
+      "project_source": "code/results/recent_baselines/paired.csv",
+      "package_path": "data/external_baselines/heno_g10/paired.csv",
+      "bytes": 20863,
+      "sha256": "0842a469442ea98f4d87849afcf85d794de9ccb2f42e4cd578253f5b4befb792"
+    },
+    {
+      "project_source": "code/results/recent_baselines/paired_source.csv",
+      "package_path": "data/external_baselines/heno_g10/paired_source.csv",
+      "bytes": 75800,
+      "sha256": "908b22d86086951239550a8e8a7bd21d5b98fcc10a9a2942f0fbf0335efc1cf9"
+    },
+    {
+      "project_source": "code/results/recent_baselines/provenance.json",
+      "package_path": "data/external_baselines/heno_g10/provenance.json",
+      "bytes": 882,
+      "sha256": "d62858cbf88031ead7d80ab27d36c7fee8d467e618f76422eb78bedd362bc00a"
+    },
+    {
+      "project_source": "code/results/recent_baselines/summary.csv",
+      "package_path": "data/external_baselines/heno_g10/summary.csv",
+      "bytes": 25057,
+      "sha256": "50d9d10c558d4907da9cf39562425476b7c568886098876fbb3813711de41f29"
+    },
+    {
+      "project_source": "code/simulation/recent_baselines.py",
+      "package_path": "data/external_baselines/heno_g10/adapter_source/recent_baselines.py",
+      "bytes": 4946,
+      "sha256": "479ea23bdd0f379440934a7e43c84e58a617a7f337629c3c776cb765b7f5c805"
+    }
+  ]
+}

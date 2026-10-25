@@ -1,0 +1,14 @@
+{
+  "state": "public_release_v1.0.0",
+  "planned_host": "GitHub",
+  "public_url": "https://github.com/mayanzu/jlc-r-paper-package",
+  "published_revision": "refs/tags/v1.0.0",
+  "main_source_sha256": "ce98e3b9a53c8f0ee3f24fd83c531e0423dd6a3e45635f257e07b8f0dbdb199e",
+  "algorithm_id": "JLC-R-HYB-V63",
+  "upload_instruction": "Public GitHub release requested by the author; use the fixed v1.0.0 snapshot for manuscript reproduction.",
+  "planned_version": "1.0.0",
+  "planned_tag": "v1.0.0",
+  "preparation_status": "Public-release snapshot; current main PDF has 19 pages and 42 references. Numerical validation unchanged; see audit/manuscript_public_release.json and audit/github_release.json.",
+  "release_url": "https://github.com/mayanzu/jlc-r-paper-package/releases/tag/v1.0.0",
+  "publication_date": "2026-10-25"
+}

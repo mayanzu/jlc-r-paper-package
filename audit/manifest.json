@@ -1,0 +1,15 @@
+{
+  "package_name": "jlc-r-compag-reproducibility",
+  "algorithm_id": "JLC-R-HYB-V63",
+  "public_entry": "code/simulation/jlc_r.py:JLCR",
+  "data_index": "results/index.json",
+  "seed_registry": "audit/seed_registry.csv",
+  "frozen_hashes": "audit/original_record_hashes.json",
+  "checksums": "audit/checksums.sha256",
+  "reproduction_coverage": "Current main numerical Tables 1-8, main statistical Figures 3-6 and repository Figures R1-R2 are reproducible from supplied records. Explicit rerun studies: confirmation, mechanisms (original G10 Table 3), agricultural_extension and relay_ablation.",
+  "public_access": "Local release candidate; GitHub upload deferred by the author. No public URL, released tag or DOI is asserted.",
+  "source_archive_provenance": "audit/source_snapshot_provenance.json",
+  "mechanism_source_manifest": "audit/mechanism_source_manifest.json",
+  "version": "1.0.0",
+  "release_state": "local_release_ready"
+}
