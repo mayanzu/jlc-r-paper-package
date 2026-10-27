@@ -13,7 +13,7 @@ This map covers the revised main article and completed five-method staged compar
 | Source tradeoffs and monitoring gaps | `source_degradation_384.csv`, `monitoring_gaps_480.csv` | Saved-trajectory descriptions; not new tests or independent replicates |
 | Reporting-threshold sensitivity | `reporting_sensitivity_1920.csv` | Descriptive rescoring of the same saved trajectories; original packet expiry remains D4 |
 | Exact execution-source bytes and input identity | `audit/frozen_source_mapping.json`, protocol and input metadata | `--mode verify` hashes the mapped bytes and archive |
-| Raw arrays and packet/control traces | Offline research archive, or an explicit rerun | A full trace is not contained in the compact node records |
+| Round arrays and method-specific logs | Original records are retained offline; an explicit rerun produces round-level latest-delivery and battery arrays, terminal sample statuses, node ledgers and applicable planning or control logs | The compact node records do not contain these detailed arrays or a complete packet-event trace |
 
 | Main item | Generated file or source | Meaning |
 |---|---|---|

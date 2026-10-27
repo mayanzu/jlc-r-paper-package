@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Please cite the associated manuscript and the archived version of this reproducibility package."
 type: software
-version: 2.0.0
+version: 2.0.1
 title: "JLC-R: Joint Listening-Credit and Reservation for Energy-Harvesting Sensor Networks"
 authors:
   - family-names: Ma

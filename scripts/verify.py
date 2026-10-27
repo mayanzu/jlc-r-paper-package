@@ -65,4 +65,4 @@ def verify():
     generated=recompute(p);stats=check_archived(generated)
     return dict(status='PASS',manifest_files=count,frozen_original_sources=sources,cases=480,node_ledgers=48000,
         tests_recomputed=stats,network_seed_n=12,max_node_energy_error_j=max_node,max_global_energy_error_j=max_global,
-        simulations_started=0,scope='Saved seed/source summaries and ledgers; full packet/round traces are not bundled.')
+        simulations_started=0,scope='Saved seed/source summaries and ledgers; detailed round arrays and method-specific logs are not bundled.')

@@ -43,7 +43,7 @@ Generated directories are created beside this package by default; `--output PATH
 - `results/statistics/` contains the archived Holm-8, Holm-64, Holm-72 and separate sign-flip Holm-8 analyses. The scripts recompute and compare them from the seed records.
 - `results/reporting_sensitivity_1920.csv`, `monitoring_gaps_480.csv` and `source_degradation_384.csv` describe the same saved trajectories; they add no independent replicates or hypothesis families.
 - `configs/formal_protocol_original.json` is the original pre-execution lock, including its original then-pending status. `audit/formal_closure_receipt.json` and `audit/formal_verification.json` document later completion and verification.
-- `audit/` contains the execution-source mapping, migration checks and seed history. The complete original execution arrays, per-round traces and attempts are preserved offline in the research archive; they are not bundled here. Full traces may be generated through an explicit rerun.
+- `audit/` contains the execution-source mapping, migration checks and seed history. The original round-level arrays, node ledgers, available method-specific logs and attempts are preserved offline in the research archive; they are not bundled here. An explicit rerun produces round-level latest-delivery and battery arrays, final sample statuses, node ledgers, and applicable planning or control logs. It does not produce a complete packet-event trace.
 
 `docs/reproduction_map.md` maps all four main tables and five figure assets to their inputs and scripts. Historical V63 agricultural, spatial and 864-factorial results remain associated with their original version and are not relabeled as RC2 evidence.
 
