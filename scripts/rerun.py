@@ -1,74 +1,85 @@
-"""Explicit simulation mode. Every execution writes only into a new output directory."""
+"""Explicit opt-in reproduction of locked cases into a new external directory."""
 from pathlib import Path
-from concurrent.futures import ProcessPoolExecutor
-import csv,hashlib,json,sys
-from paths import ROOT
+import csv,json,sys,traceback
+import numpy as np
+from analysis_core import ROOT
 
-def read(name):
-    with (ROOT/name).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
-def cases(study):
-    if study=='reliability':
-        plan=json.loads((ROOT/'code/experiments/v6_4_agricultural_extension/reliability_20261025_protocol.json').read_text(encoding='utf-8'))
-        return [dict(study=study,condition=c['condition'],supply=c['supply'],seed=seed,method=method) for c in plan['conditions'] for seed in plan['seeds'] for method in plan['methods']]
-    if study=='relay_ablation':
-        data=read('code/experiments/v6_5_relay_ablation/results/formal_runs.csv')
-        return [{'study':study,'condition':r['condition'],'supply':float(r['supply']),'treatment':r['treatment'],'seed':int(r['seed']),'configuration':r['configuration']} for r in data]
-    paths={'confirmation':'code/experiments/v6_3_relay_repair/D_confirmation_metrics_seeds16.csv',
-        'supply':'code/experiments/v6_4_agricultural_extension/results/supply.csv',
-        'freshness':'code/experiments/v6_4_agricultural_extension/results/freshness.csv',
-        'canopy':'code/experiments/v6_4_agricultural_extension/results/canopy.csv'}
-    if study=='agricultural_extension':return sum((cases(s) for s in ['supply','freshness','canopy']),[])
-    aliases={'JLC-R-HYB-V63':'JLC-R','JLC-R-SA':'Prefix-only','JLC-R-HYB':'Hybrid control','PADC-AGE':'PADC-AGE','PADC-AGE+V63':'PADC+relay'}
-    return [{'study':study,'condition':r['condition'],'supply':float(r['supply']),'seed':int(r['seed']),
-        'method':aliases.get(r['method'],r['method']),'treatment':r.get('canopy_treatment','C0')} for r in read(paths[study])]
+sys.path.insert(0,str(ROOT/'code/simulation'))
+from current_io import load_config,build_scenario
+from validation_model import StreamingBank
+from jlc_r import JLCR
+from eadcm_host import EADCMCommonHost
+from lantern_host import LanternCommonHost
+from v6_model import HYBSimulator
+from v63_model import RelayRepairHYB
 
-def job(payload):
-    case,out=payload;out=Path(out)
-    if case['study']=='reliability':
-        sys.path.insert(0,str(ROOT/'code/experiments/v6_4_agricultural_extension'))
-        from reliability_20261025 import execute as record
-        return record(tuple(case[k] for k in ['condition','supply','seed','method']),out)
-    if case['study']=='relay_ablation':
-        sys.path.insert(0,str(ROOT/'code/experiments/v6_5_relay_ablation/src'))
-        from experiment import execute
-        actual={k:case[k] for k in ['condition','supply','treatment','seed','configuration']}
-        return execute(actual,out)
-    sys.path.insert(0,str(ROOT/'code/experiments/v6_4_agricultural_extension'))
-    from extension_core import run_case
-    return run_case(case['study'],case['condition'],case['seed'],case['supply'],case['method'],case['treatment'])
-
-def execute(study,out,workers=1,dry_run=False):
-    if study=='mechanisms':
-        from mechanisms import execute as execute_mechanisms
-        return execute_mechanisms(out,workers,dry_run)
-    matrix=cases(study)
-    if study=='reliability':
-        base=ROOT/'code/experiments/v6_4_agricultural_extension'
-        frozen_new=json.loads((base/'results/reliability_20261025_execution_freeze.json').read_text(encoding='utf-8'))
-        for file,h in [(base/'reliability_20261025.py',frozen_new['source_sha256']),(base/'reliability_20261025_protocol.json',frozen_new['protocol_sha256'])]:
-            assert hashlib.sha256(file.read_bytes()).hexdigest()==h
-    # Check all byte-frozen files used by the factorial/current kernel before starting.
-    frozen=json.loads((ROOT/'code/experiments/v6_5_relay_ablation/audit/execution_freeze.json').read_text(encoding='utf-8'))
-    for name,expected in frozen['files_sha256'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==expected,name
-    if dry_run:return {'mode':'rerun','study':study,'planned_cases':len(matrix),'first_case':matrix[0],'dry_run':True,'simulations_started':0}
-    out=Path(out).resolve()
-    assert not out.exists(),'Rerun output must be a new directory'
-    assert not out.is_relative_to(ROOT) or out.is_relative_to(ROOT/'outputs'),'Refusing to write into frozen package inputs'
-    out.mkdir(parents=True)
-    raw=out/'raw';raw.mkdir()
-    payload=[(c,str(raw)) for c in matrix]
-    if workers==1:iterator=map(job,payload);pool=None
-    else:pool=ProcessPoolExecutor(max_workers=workers);iterator=pool.map(job,payload)
-    records=[]
+def encode(x):
+    if isinstance(x,np.generic):return x.item()
+    if isinstance(x,np.ndarray):return x.tolist()
+    raise TypeError(type(x).__name__)
+def dump(path,x):path.write_text(json.dumps(x,indent=2,default=encode),encoding='utf8')
+def csvout(path,items):
+    if not items:return
+    with path.open('w',encoding='utf8',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(items[0]));w.writeheader();w.writerows(items)
+def construct(method,c,sc):
+    bank=StreamingBank(sc)
+    if method=='JLC-R-RC2':return JLCR(c,sc,bank)
+    if method=='EADCM-CE':return EADCMCommonHost(c,sc,bank,forecast_days=5,target_fraction=.2)
+    if method=='LANTERN-CE':return LanternCommonHost(c,sc,bank,maximum_reward=32.,trickle_redundancy=1,data_header_bits=64,uniform_listen_s=.56)
+    if method=='Base-hybrid':return HYBSimulator(c,sc,bank)
+    if method=='Pre-recovery-JLC-R':return RelayRepairHYB(c,sc,bank,v63_mechanism='relay_repair')
+    raise ValueError(method)
+def run_case(case,protocol,out):
+    folder=out/f"case_{case['index']:04d}";folder.mkdir(exist_ok=False)
+    dump(folder/'case.json',case);latest=[];battery=[];parents=[];ranks=[]
     try:
-        for row in iterator:
-            records.append(row)
-            # A fresh per-case record preserves completed work without touching originals.
-            (out/f'case_{len(records):04d}.json').write_text(json.dumps(row,default=lambda v:v.item(),indent=2)+'\n',encoding='utf-8')
-            print(f'{study}: {len(records)}/{len(matrix)}',flush=True)
-    finally:
-        if pool:pool.shutdown()
-    fields=sorted(set().union(*(r.keys() for r in records)))
-    with (out/'rerun_results.csv').open('w',encoding='utf-8',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(records)
-    return {'study':study,'completed':len(records),'output':str(out),'retained_results_unchanged':True}
+        condition=next(c for c in protocol['conditions'] if c['name']==case['condition'])
+        c=load_config(condition);sc=build_scenario(c,case['seed'],protocol['days'],case['supply'],condition)
+        s=construct(case['method'],c,sc);dump(folder/'effective_config.json',s.c)
+        for _ in range(sc.rounds):
+            s.round();latest.append(s.latest.copy());battery.append(s.battery.copy())
+            if case['method']=='LANTERN-CE':parents.append(s.parent.copy());ranks.append(s.rank.copy())
+        # Finalize outstanding status codes before serializing the terminal
+        # array, matching the original formal execution order.
+        m=s.metrics()
+        l=np.asarray(latest);b=np.asarray(battery)
+        extra=dict(parents=np.asarray(parents),ranks=np.asarray(ranks)) if parents else {}
+        np.savez_compressed(folder/'arrays.npz',latest=l,battery=b,sample_status=s.sample_status,**extra)
+        csvout(folder/'node_ledgers.csv',s.node_rows())
+        for attr,name in [('cadence_plans','cadence_plans.csv'),('activation_rows','intentional_sleep.csv'),
+                          ('planning_rows','planning.csv'),('activity_rows','activity.csv'),
+                          ('control_rows','control_frames.csv'),('meter_rows','DIO_meters.csv')]:
+            if hasattr(s,attr):csvout(folder/name,getattr(s,attr))
+        cov=((l>=0)&(np.arange(sc.rounds)[:,None]-l+1<=4)).mean(axis=0)*100
+        ages=np.where(l>=0,np.arange(sc.rounds)[:,None]-l+1,np.arange(sc.rounds)[:,None]+1)
+        metrics=dict(coverage_pct=cov.mean(),source_coverage_p5_pct=np.quantile(cov,.05),
+            source_coverage_jain=cov.sum()**2/(100*(cov**2).sum()) if cov.any() else 0.,aoi_mean_minutes=ages.mean()*15)
+        for k,v in metrics.items():assert abs(m[k]-v)<1e-8,k
+        assert np.isfinite(b).all() and b.min()>=-1e-12 and b.max()<=4+1e-12
+        assert m['max_node_energy_error_j']<=1e-8 and m['max_energy_balance_error_j']<=1e-6 and m['timing_misses']==0
+        outcomes=m.get('outcomes',m)
+        assert sum(outcomes.get(k,0) for k in ['delivered','expired','overflow','outstanding','unsensed','routing_drop'])==sc.rounds*c['nodes']
+        assert np.count_nonzero(s.sample_status)==sc.rounds*c['nodes']
+        dump(folder/'record.json',dict(case=case,metrics=m,rounds=sc.rounds,run_kind='explicit_reexecution'))
+        dump(folder/'validation.json',dict(status='PASS',metrics_recomputed=list(metrics),data_and_energy_checked=True))
+    except BaseException as exc:
+        if latest:np.savez_compressed(folder/'partial_arrays.npz',latest=latest,battery=battery)
+        dump(folder/'failure.json',dict(type=type(exc).__name__,message=str(exc),traceback=traceback.format_exc()))
+        raise
+def run(protocol,out,indices=None,dry_run=False):
+    cases=protocol['cases']
+    if indices is not None:
+        wanted=set(indices);cases=[c for c in cases if c['index'] in wanted]
+        assert len(cases)==len(wanted),'Unknown or duplicate requested case index'
+    plan=dict(study='confirmation',cases=len(cases),rounds_per_case=protocol['days']*96,
+        original_network_seeds=True,new_formal_claim=False,output=str(out))
+    if dry_run:return dict(**plan,dry_run=True,simulations_started=0)
+    out=Path(out).resolve();assert not out.is_relative_to(ROOT.resolve()),'Output must be outside the frozen package'
+    out.mkdir(parents=True,exist_ok=False);dump(out/'run_plan.json',plan)
+    completed=[]
+    for case in cases:
+        run_case(case,protocol,out);completed.append(case['index'])
+        print(f"Completed {len(completed)}/{len(cases)}: case {case['index']}",flush=True)
+    dump(out/'completed.json',dict(status='COMPLETE',cases=completed,formal_claim=False))
+    return dict(**plan,dry_run=False,simulations_started=len(completed))

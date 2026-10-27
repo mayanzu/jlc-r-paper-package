@@ -1,57 +1,53 @@
-"""Three modes: verify/reproduce never run simulations; rerun is explicit."""
+"""Verify, regenerate saved-result outputs, or explicitly rerun confirmation."""
 from pathlib import Path
-from datetime import datetime,timezone,timedelta
-import argparse,json,sys
-from paths import ROOT,output_root
+from datetime import datetime
+import argparse,csv,json,statistics,shutil
+from analysis_core import ROOT,rows,recompute,check_archived,write_outputs
+from verify import verify
 
+def summary(protocol,out):
+    data=rows(ROOT/'results/confirmation_480.csv')
+    fields=['coverage_pct','source_coverage_p5_pct','source_coverage_jain','aoi_mean_minutes',
+            'sample_completion_pct','fixed_demand_packet_delivery_pct','actual_energy_j','zero_coverage_sources']
+    result=[]
+    for method in protocol['methods']:
+        for condition in protocol['conditions']:
+            for supply in protocol['supplies']:
+                rr=[r for r in data if r['method']==method and r['condition']==condition['name'] and float(r['supply'])==supply]
+                assert len(rr)==12
+                result.append(dict(method=method,condition=condition['name'],supply=supply,n_network_seeds=12,
+                    **{k:statistics.mean(float(r[k]) for r in rr) for k in fields}))
+    with (out/'condition_means_40.csv').open('w',encoding='utf8',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(result[0]));w.writeheader();w.writerows(result)
 def main():
-    p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--mode',choices=['verify','reproduce','rerun'],required=True)
-    p.add_argument('--study',choices=['confirmation','mechanisms','relay_ablation','agricultural_extension','supply','freshness','canopy','reliability'])
-    p.add_argument('--output',type=Path)
-    p.add_argument('--workers',type=int,default=1)
-    p.add_argument('--dry-run',action='store_true',help='Check rerun matrix and frozen source hashes without simulation')
-    a=p.parse_args()
-    if a.workers<1:p.error('--workers must be positive')
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--mode',required=True,choices=['verify','reproduce','rerun'])
+    ap.add_argument('--study',choices=['confirmation']);ap.add_argument('--output',type=Path)
+    ap.add_argument('--case-index',type=int,action='append');ap.add_argument('--dry-run',action='store_true')
+    a=ap.parse_args()
+    if a.mode!='rerun' and (a.study or a.case_index is not None or a.dry_run):ap.error('study, case-index and dry-run apply only to rerun')
+    if a.mode=='verify' and a.output:ap.error('verify is read-only and does not accept output')
+    if a.mode=='rerun' and a.study!='confirmation':ap.error('rerun requires --study confirmation')
+    verified=verify();p=json.loads((ROOT/'configs/formal_protocol_original.json').read_text(encoding='utf8'))
+    if a.mode=='verify':print(json.dumps(verified,indent=2));return
+    out=(a.output or ROOT.parent/(a.mode+'_'+datetime.now().strftime('%Y%m%d_%H%M%S'))).resolve()
+    if out.is_relative_to(ROOT.resolve()):ap.error('output must be outside the frozen package')
     if a.mode=='rerun':
-        if not a.study:p.error('--study is required for rerun')
-        from rerun import execute
-        out=a.output or output_root()/('rerun_'+a.study+'_'+datetime.now(timezone(timedelta(hours=8))).strftime('%Y%m%d_%H%M%S'))
-        print(json.dumps(execute(a.study,out,a.workers,a.dry_run),indent=2));return
-    if a.study or a.dry_run:p.error('--study and --dry-run apply only to rerun')
-    from verify import verify
-    report=verify()
-    if a.mode=='reproduce':
-        out=a.output or output_root()/('reproduce_'+datetime.now(timezone(timedelta(hours=8))).strftime('%Y%m%d_%H%M%S'))
-        out=out.resolve()
-        if out.exists():p.error('--output must be a new directory')
-        if out.is_relative_to(ROOT) and not out.is_relative_to(ROOT/'outputs'):p.error('Generated outputs cannot overwrite package inputs')
-        out.mkdir(parents=True)
-        from reproduce_tables import reproduce as tables
-        from reproduce_figures import reproduce as figures
-        from reproduce_statistics import agricultural
-        report['tables']=tables(out/'tables')
-        agricultural_results=agricultural(out/'agricultural_statistics')
-        # Independently recomputed primary Holm-36 table.
-        sys.path.insert(0,str(ROOT/'docs/paper_audit'))
-        from check_scientific_consistency import confirmation,read_csv
-        from reproduce_tables import write
-        _,tests,_=confirmation(read_csv(ROOT/'code/experiments/v6_3_relay_repair/D_confirmation_metrics_seeds16.csv'))
-        write(out/'statistics/primary_holm36.csv',tests)
-        # Original factorial analysis, writing only to the new output tree.
-        import runpy,shutil
-        ab=ROOT/'code/experiments/v6_5_relay_ablation';work=out/'relay_statistics'
-        (work/'results').mkdir(parents=True);(work/'report').mkdir();(work/'audit').mkdir()
-        shutil.copyfile(ab/'audit/formal_audit.json',work/'audit/formal_audit.json')
-        shutil.copyfile(ab/'results/formal_runs.csv',work/'results/formal_runs.csv')
-        module=runpy.run_path(str(ab/'scripts/analyze_effects.py'),run_name='reproduction_analysis')
-        module['main'].__globals__['HERE']=work;module['main']()
-        report['figures']=figures(out,agricultural_results,work/'results')
-        from reproduce_reliability import reproduce as reliability
-        report['reliability']=reliability(out/'reliability')
-        report['plot_inputs']='Recomputed from supplied seed-level rows before plotting; distributed derived summaries are not used as a substitute.'
-        report['output']=str(out)
-        (out/'verification.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
-    print(json.dumps(report,indent=2))
-
+        from rerun import run
+        print(json.dumps(run(p,out,a.case_index,a.dry_run),indent=2));return
+    out.mkdir(parents=True,exist_ok=False)
+    generated=recompute(p);check_archived(generated);write_outputs(out,generated);summary(p,out)
+    from paper_tables import build as build_paper_tables
+    build_paper_tables(p,generated,out)
+    from plot import external_coverage
+    from plot_panels import aggregate_effects,sampling_tradeoff,service_boundary
+    external_coverage(generated['cell_primary_endpoints_holm64.csv'],out)
+    aggregate_effects(generated['primary_holm8.csv'],out)
+    sampling_tradeoff(out)
+    service_boundary(generated['fairness_age_holm72.csv'],out)
+    for suffix in ['svg','pdf']:
+        shutil.copyfile(ROOT/'assets'/('figure1_core.'+suffix),out/('figure1_core.'+suffix))
+    (out/'verification.json').write_text(json.dumps(verified,indent=2),encoding='utf8')
+    print(json.dumps(dict(status='PASS',output=str(out),statistical_families=4,
+        condition_rows=40,figures=5,simulations_started=0),indent=2))
 if __name__=='__main__':main()
